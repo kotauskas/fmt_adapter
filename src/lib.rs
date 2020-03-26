@@ -34,7 +34,7 @@
 //! println!("The sign in uppercase hexadecimal is `0x{:X}`", sign);
 //! # assert_eq!(format!("{:X}", sign), "Positive")
 //! ```
-//! All adapters in the crate are generated from a list of traits using a build script. As such, no manual editing of the adaptor delarations and their `impl` blocks is possible. The generated files are listed in `.gitignore` — use [`cargo download`][cargo-dl] and build the crate if you want to explore the generated results, or simply take a look at the `build.rs` file.
+//! All adapters in the crate are generated from a list of traits using a build script. As such, **no manual editing** of the adaptor delarations and their `impl` blocks is possible. Use [`cargo download`][cargo-dl] and build the crate if you want to explore the generated results, or simply take a look at the `build.rs` file.
 //!
 //! The crate is `#![no_std]`, meaning that it works in a freestanding context and only depends on `core::fmt`, which requires a functional global allocator.
 //!
@@ -47,5 +47,5 @@
 
 #![no_std]
 
-mod generated;
-pub use generated::*;
+mod import_generated;
+pub use import_generated::*;

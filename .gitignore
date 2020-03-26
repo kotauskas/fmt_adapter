@@ -1,4 +1,2 @@
 /target
 Cargo.lock
-src/generated/*
-!src/generated/mod.rs

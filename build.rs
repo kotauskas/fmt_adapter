@@ -28,28 +28,26 @@ use std::{env, fs, path::PathBuf, io::Write};
 fn main() {
     println!("cargo:rerun-if-changed=build.rs");
 
-    let crate_dir = PathBuf::from(env::var_os("CARGO_MANIFEST_DIR")
+    let crate_dir = PathBuf::from(env::var_os("OUT_DIR")
         .expect("Failed to retreive output directory (is Cargo broken?)"));
 
-    let mut file = fs::File::create(crate_dir.join("src/generated/only_adapters.rs")).unwrap();
+    let mut file = fs::File::create(crate_dir.join("BUILDSCRIPT_GENERATED_only_adapters.rs")).unwrap();
     file.write_all(generate_only_adapters_file().as_bytes()).unwrap();
-    let mut file = fs::File::create(crate_dir.join("src/generated/fmt_adapters.rs")).unwrap();
+    let mut file = fs::File::create(crate_dir.join("BUILDSCRIPT_GENERATED_fmt_adapters.rs")).unwrap();
     file.write_all(generate_fmt_adapters_file().as_bytes()).unwrap();
 }
 
 fn generate_only_adapters_file() -> String {
-    let mut snippets = Vec::<String>::with_capacity(GEN_TRAITS.len() + 2);
+    let mut snippets = Vec::<String>::with_capacity(GEN_TRAITS.len() + 1);
     snippets.push(GENERATED_WARNING.to_string());
-    snippets.push(format!("use core::fmt::{{Formatter, {}}};\n", GEN_TRAITS.join(", ")));
     for tr in GEN_TRAITS {
         snippets.push(mk_only(tr));
     }
     snippets.join("\n")
 }
 fn generate_fmt_adapters_file() -> String {
-    let mut snippets = Vec::<String>::with_capacity(GEN_TRAITS.len() + 2);
+    let mut snippets = Vec::<String>::with_capacity(GEN_TRAITS.len() + 1);
     snippets.push(GENERATED_WARNING.to_string());
-    snippets.push(format!("use core::fmt::{{Formatter, {}}};\n", GEN_TRAITS.join(", ")));
     for trd in GEN_TRAITS {
         for trs in GEN_TRAITS {
             if trd == trs {continue;}
