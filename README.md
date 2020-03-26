@@ -1,6 +1,6 @@
 # `fmt_adapter`
-![Crates.io link](https://img.shields.io/crates/v/fmt_adapter "fmt_adapter on Crates.io")
-![Docs.rs link](https://img.shields.io/badge/documentation-docs.rs-informational?link=https://docs.rs/fmt_adapter "fmt_adapter on Docs.rs")
+[![Crates.io link](https://img.shields.io/crates/v/fmt_adapter)](https://crates.io/crates/fmt_adapter "fmt_adapter on Crates.io")
+[![Docs.rs link](https://img.shields.io/badge/documentation-docs.rs-informational)](https://docs.rs/fmt_adapter "fmt_adapter on Docs.rs")
 
 This crate provides newtype adaptors to and from any formatting trait. More specifically, it allows one to wrap a value into a filter wrapper which filters out the implementations of all formatting traits except for one and then wrap it into a adaptor wrapper which implements one specific formatting trait, which can be different from the original formatting trait. This is better demonstrated with an example:
 ```rust
