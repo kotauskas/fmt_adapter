@@ -1,6 +1,6 @@
 # `fmt_adapter`
-[![Crates.io link](https://img.shields.io/crates/v/fmt_adapter)](https://crates.io/crates/fmt_adapter "fmt_adapter on Crates.io")
-[![Docs.rs link](https://img.shields.io/badge/documentation-docs.rs-informational)](https://docs.rs/fmt_adapter "fmt_adapter on Docs.rs")
+[![Crates.io](https://img.shields.io/crates/v/fmt_adapter)](https://crates.io/crates/fmt_adapter "fmt_adapter on Crates.io")
+[![Docs.rs](https://img.shields.io/badge/documentation-docs.rs-informational)](https://docs.rs/fmt_adapter "fmt_adapter on Docs.rs")
 
 This crate provides newtype adaptors to and from any formatting trait. More specifically, it allows one to wrap a value into a filter wrapper which filters out the implementations of all formatting traits except for one and then wrap it into a adaptor wrapper which implements one specific formatting trait, which can be different from the original formatting trait. This is better demonstrated with an example:
 ```rust
@@ -32,7 +32,7 @@ let sign = UpperHexFromDebug(sign.0); // Get the value from the previous adapter
                                       // and do something very random
 println!("The sign in uppercase hexadecimal is `0x{:X}`", sign);
 ```
-All adapters in the crate are generated from a list of traits using a build script. As such, no manual editing of the adaptor delarations and their `impl` blocks is possible. The generated files are listed in `.gitignore` — use [`cargo download`][cargo-dl] and build the crate if you want to explore the generated results, or simply take a look at the `build.rs` file.
+All adapters in the crate are generated from a list of traits using a build script. As such, **no manual editing** of the adaptor delarations and their `impl` blocks is possible. Use [`cargo download`][cargo-dl] and build the crate if you want to explore the generated results, or simply take a look at the `build.rs` file.
 
 The crate is `#![no_std]`, meaning that it works in a freestanding context and only depends on `core::fmt`, which requires a functional global allocator.
 

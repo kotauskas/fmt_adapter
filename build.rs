@@ -31,6 +31,8 @@ fn main() {
     let crate_dir = PathBuf::from(env::var_os("OUT_DIR")
         .expect("Failed to retreive output directory (is Cargo broken?)"));
 
+        let mut file = fs::File::create(crate_dir.join("BUILDSCRIPT_GENERATED_use.rs")).unwrap();
+    file.write_all(generate_use_file().as_bytes()).unwrap();
     let mut file = fs::File::create(crate_dir.join("BUILDSCRIPT_GENERATED_only_adapters.rs")).unwrap();
     file.write_all(generate_only_adapters_file().as_bytes()).unwrap();
     let mut file = fs::File::create(crate_dir.join("BUILDSCRIPT_GENERATED_fmt_adapters.rs")).unwrap();
@@ -55,6 +57,12 @@ fn generate_fmt_adapters_file() -> String {
         }
     }
     snippets.join("\n")
+}
+fn generate_use_file() -> String {
+    let mut snippets = Vec::<String>::with_capacity(2);
+    snippets.push(GENERATED_WARNING.to_string());
+    snippets.push(format!("use core::fmt::{{Formatter, {traits}}};", traits = GEN_TRAITS.join(", ")));
+    snippets.join("")
 }
 
 fn mk_only(tr: &str) -> String {

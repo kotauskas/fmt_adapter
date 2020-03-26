@@ -1,6 +1,6 @@
 [package]
 name = "fmt_adapter"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["Kotauskas <v.toncharov@gmail.com>"]
 edition = "2018"
 description = "Provides newtype adaptors to and from any formatting trait"
