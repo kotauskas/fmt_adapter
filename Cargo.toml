@@ -1,0 +1,11 @@
+[package]
+name = "fmt_adapter"
+version = "0.1.0"
+authors = ["Kotauskas <v.toncharov@gmail.com>"]
+edition = "2018"
+description = "Provides newtype adaptors to and from any formatting trait"
+readme = "README.md"
+license = "CC0-1.0"
+repository = "https://www.github.com/kotauskas/fmt_adapter"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
